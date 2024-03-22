@@ -62,7 +62,7 @@ type="text/css"
                 class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-              <form>
+              <form id="myForm" >
                 <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                  
                   
@@ -76,14 +76,14 @@ type="text/css"
       
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3" class="form-control form-control-lg"
+                  <input type="text" id="form3Example3" name="username"class="form-control form-control-lg"
                     placeholder="Enter a valid email address" />
-                  <label class="form-label" for="form3Example3">Email address</label>
+                  <label class="form-label" for="form3Example3">Username</label>
                 </div>
       
                 <!-- Password input -->
                 <div class="form-outline mb-3">
-                  <input type="password" id="form3Example4" class="form-control form-control-lg"
+                  <input type="password" id="form3Example4" name="password"class="form-control form-control-lg"
                     placeholder="Enter password" />
                   <label class="form-label" for="form3Example4">Password</label>
                 </div>
@@ -100,7 +100,7 @@ type="text/css"
                 </div>
       
                 <div class="text-center text-lg-start mt-4 pt-2">
-                  <button type="button" class="btn btn-primary btn-lg"
+                  <button type="submit"class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                   <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
                       class="link-danger">Register</a></p>
@@ -136,5 +136,51 @@ type="text/css"
           <!-- Right -->
         </div>
       </section>
+
+      <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Convert form data to JSON
+            const formData = new FormData(event.target);
+            const jsonObject = {};
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
+            const jsonData = JSON.stringify(jsonObject);
+            console.log(jsonData);
+  
+            // POST JSON data to a certain URL
+            const url = 'http://192.168.175.22:8000/festival/login/';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response:', data);
+                if(data[0].message == "Login sucessful"){
+                    console.log('a')
+                }
+                else{
+                    console.log('s')
+                }
+                // Do something with the response
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors
+            });
+        });
+    </script>
+  
 </body>
 </html>
