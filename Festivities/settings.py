@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2k*d^zn8@do^o^@o-)psp(!0_+iuiv1uym!0l#7^4-iy-hq25+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.175.22','127.0.0.1','']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Festivities.festival',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Festivities.wsgi.application'
 
+REST_FRAMEWORK = {
+    
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.TemplateHTMLRenderer',  # Ensure this renderer is included
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.IsAuthenticated',
+    ],
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -99,6 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ROOT_URLCONF = 'Festivities.urls'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
