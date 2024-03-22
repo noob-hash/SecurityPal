@@ -14,10 +14,28 @@ href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400ital
 rel="stylesheet"
 type="text/css"
 />
-<link href="style.css" rel="stylesheet" />
+<link href="../css/style.css" rel="stylesheet" />
 
   <title>Material Login Form</title>
   <!-- Assuming FontAwesome CSS is included -->
+
+  <style>
+    .divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+  </style>
 </head>
 <body>
     <nav class="site-navbar js-sticky-header site-navbar-target" role="banner">
@@ -31,38 +49,26 @@ type="text/css"
             <div class="col-8" style="
               display: grid;
               place-content: center;
-            ">
-              <nav class="site-navigation" role="navigation">
-    
-                <ul class="ml-auto mt-4 d-flex align-items-center justify-content-center list-unstyled gap-4">
-                  <li><a href="#home-section" class="nav-link">Home</a></li>
-                  <li><a href="#services-section" class="nav-link">Feativals</a></li>
-    
-                  <li><a href="#why-us-section" class="nav-link">Map</a></li>
-    
-                  <li><a href="#testimonials-section" class="nav-link">Featured</a></li>
-                  <li><a href="#blog-section" class="nav-link">About</a></li>
-                </ul>
-              </nav>
-    
-            </div>
+            "></div>
     
             <!-- <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div> -->
             
-            <button class="col-2 btn btn-sm btn-primary " style="width: 100px;">Sign out</button>
+            <button class="col-2 btn btn-sm btn-primary " style="width: 100px;"></button>
           </div>
         </div>
     
       </nav>
-    <section class="vh-100">
-        <div class="container-fluid h-custom">
+
+      
+    <section class="position-relative" style="min-height: 100vh;">
+        <div class="container h-custom">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
-              <img src="login3.jpg"
+              <img src="../assets/login3.jpg"
                 class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-              <form>
+              <form id="myForm" >
                 <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                  
                   
@@ -76,14 +82,14 @@ type="text/css"
       
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3" class="form-control form-control-lg"
+                  <input type="text" id="form3Example3" name="username"class="form-control form-control-lg"
                     placeholder="Enter a valid email address" />
-                  <label class="form-label" for="form3Example3">Email address</label>
+                  <label class="form-label" for="form3Example3">Username</label>
                 </div>
       
                 <!-- Password input -->
                 <div class="form-outline mb-3">
-                  <input type="password" id="form3Example4" class="form-control form-control-lg"
+                  <input type="password" id="form3Example4" name="password"class="form-control form-control-lg"
                     placeholder="Enter password" />
                   <label class="form-label" for="form3Example4">Password</label>
                 </div>
@@ -100,8 +106,8 @@ type="text/css"
                 </div>
       
                 <div class="text-center text-lg-start mt-4 pt-2">
-                  <button type="button" class="btn btn-primary btn-lg"
-                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                  <button type="submit"class="btn btn-primary btn-lg"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;"> <a href="HomePage.html">Login</a>  </button>
                   <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
                       class="link-danger">Register</a></p>
                 </div>
@@ -110,31 +116,64 @@ type="text/css"
             </div>
           </div>
         </div>
-        <div
-          class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+       
+      </section>
+      
+ <div class="d-relative flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
           <!-- Copyright -->
           <div class="text-white mb-3 mb-md-0">
             Copyright © 2024. All rights reserved.
           </div>
           <!-- Copyright -->
       
-          <!-- Right -->
-          <div>
-            <a href="#!" class="text-white me-4">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#!" class="text-white me-4">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#!" class="text-white me-4">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="#!" class="text-white">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
+        
           <!-- Right -->
         </div>
-      </section>
+
+      <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Convert form data to JSON
+            const formData = new FormData(event.target);
+            const jsonObject = {};
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
+            const jsonData = JSON.stringify(jsonObject);
+            console.log(jsonData);
+  
+            // POST JSON data to a certain URL
+            const url = 'http://192.168.175.22:8000/festival/login/';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response:', data);
+                if(data[0].message == "Login sucessful"){
+                    console.log('a')
+                }
+                else{
+                    console.log('s')
+                }
+                // Do something with the response
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors
+            });
+        });
+    </script>
+  
 </body>
 </html>
