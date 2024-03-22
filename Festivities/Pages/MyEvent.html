@@ -83,7 +83,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto align-items-center">
             <li class="nav-item">
-              <a class="nav-link mx-2 text-primary" href="HomePage.html">
+              <a class="nav-link mx-2" href="HomePage.html">
                 Home</a
               >
             </li>
@@ -96,7 +96,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link mx-2" href="MyEvent.html">MyEvent</a>
+              <a class="nav-link mx-2 text-primary" href="MyEvent.html">MyEvent</a>
             </li>
             <li class="nav-item ms-3">
               <a class="btn btn-black btn-rounded" href="#!">
@@ -129,8 +129,8 @@
     <section class="features-icons bg-light text-center">
       <div class="container-fluid">
         <div class="row g-0">
-          <div class="col-lg-8 text-start">
-            <h3 class="mb-4 pl-4" style="margin-left: 15px;">Festival This month</h3>
+          <div class="col-lg-12 text-start">
+            <h3 class="mb-4 mx-auto" style="width: 87%;">Festival This month</h3>
             <!-- Event cards container here -->
             <div class="container w-100">
               <!-- event cards -->
@@ -142,10 +142,6 @@
             </div>
           </div>
 
-          <div class="col-lg-4 px-4">
-            <h3 class="text-start mb-4">Calender</h3>
-            <div id="calendar"></div>
-          </div>
         </div>
       </div>
     </section>
@@ -244,7 +240,7 @@
 
         // Function to fetch data
         function fetchData() {
-          fetch("http://192.168.175.22:8000/festival/festivities/") // URL to your Django endpoint
+          fetch("http://192.168.175.22:8000/festival/calender/") // URL to your Django endpoint
             .then((response) => {
               if (!response.ok) {
                 throw new Error("Network response was not ok");
@@ -275,10 +271,7 @@
                 <input type="date" name="start_date" value="${item.start_date}" hidden>
             </div>
             <p class="card-text">${item.description}</p>
-            <div class="d-flex">
-                <button class="btn btn-primary">Add to Calendar</button>
-                <a href="EventDetail.html" class="btn text-primary">View Details</a>
-            </div>
+         
         </div>
     `;
 
