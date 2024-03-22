@@ -1,11 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1></h1>
-</body>
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Display a map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.css" integrity="sha512-YiKiYr5x19NfqUynvDVvRPHH6xZY2vnI5YUvhYJ1C86wSZf0Oa4h7l6KE0h4grRgPEzC9Qq2fVsIMDQ8f0bQyQ==" crossorigin="anonymous" />
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <!-- Leaflet Routing Machine JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.js" integrity="sha512-vpLteLbLEiQeCKm4VXHLMawtJxq4nwQy2IgNlAZSCwoZ28+2nH/PS3INwN7P9BzBrHbw+XqDZv/mZD7YdTDZng==" crossorigin="anonymous"></script>
+   
+<link rel="stylesheet" href="../css/style.css">
+    <style>
+      #map {
+        /* width: 500px; */
+        position: absolute;
+        top: 60px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    </style>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+  </head>
+  <body>
+       <!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="#"
+        >FestivALL</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="HomePage.html"> Home</a>
+          </li>
+    
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-primary" href="Interactive.html"> Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#!">Featured</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#!">About Us</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="btn btn-black btn-rounded" href="#!"> <i class="bi bi-box-arrow-in-right"> </i> Sign in</a> 
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+
+      <section class="container">
+        <div id="map"></div>
+      </section>
+    
+    <!-- <script>
+      var map = L.map("map").setView([27.7172, 85.3240], 13);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+    </script> -->
+
+
+
+    <!-- <script>
+        // Function to calculate distance between two points using Haversine formula
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            var R = 6371; // Radius of the Earth in kilometers
+            var dLat = (lat2 - lat1) * Math.PI / 180; // Convert degrees to radians
+            var dLon = (lon2 - lon1) * Math.PI / 180;
+            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var distance = R * c; // Distance in kilometers
+            return distance;
+        }
+
+        // Initialize the map
+        var map = L.map("map").setView([27.6804, 85.3190], 14); // Centered on Kathmandu
+
+        // Add the tile layer (OpenStreetMap)
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Add markers for Pulchok and Mangal Bazar
+        var pulchok = L.marker([27.6788, 85.3222]).addTo(map).bindPopup('Pulchok, Lalitpur');
+        var mangalBazar = L.marker([27.6777, 85.3164]).addTo(map).bindPopup('Mangal Bazar, Lalitpur');
+
+        // Calculate distance between Pulchok and Mangal Bazar
+        var distance = haversineDistance(27.6788, 85.3222, 27.6777, 85.3164); // Coordinates for Pulchok and Mangal Bazar
+        console.log("Distance between Pulchok and Mangal Bazar: " + distance.toFixed(2) + " km");
+
+    </script> -->
+
+    <script>
+        // Initialize the map
+        var map = L.map("map").setView([27.6804, 85.3190], 14); // Centered on Kathmandu
+
+        // Add the tile layer (OpenStreetMap)
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Add markers for Pulchok and Mangal Bazar
+        var pulchok = L.marker([27.6788, 85.3222]).addTo(map).bindPopup('Pulchok, Lalitpur');
+        var mangalBazar = L.marker([27.6777, 85.3164]).addTo(map).bindPopup('Mangal Bazar, Lalitpur');
+
+        // Initialize the routing control
+        var control = L.Routing.control({
+            waypoints: [
+                L.latLng(27.6788, 85.3222), // Pulchok coordinates
+                L.latLng(27.6777, 85.3164)  // Mangal Bazar coordinates
+            ],
+            routeWhileDragging: true,
+            geocoder: L.Control.Geocoder.nominatim(),
+            lineOptions: {
+                styles: [{color: '#0066ff', opacity: 0.7, weight: 5}]
+            }
+        }).addTo(map);
+    </script>
+
+  </body>
 </html>

@@ -25,47 +25,18 @@
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/style.css" rel="stylesheet" />
-    <link href="../css/calenderStyle.css" rel="stylesheet" />
+    <!-- <link href="calenderStyle.css" rel="stylesheet" /> -->
   </head>
   <body>
-    <!-- <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+    <!-- Navigation-->
+    <!-- <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#"
-          >FestivALL</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-mdb-toggle="collapse"
-          data-mdb-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto align-items-center">
-            <li class="nav-item">
-              <a class="nav-link mx-2" href="#!"> Festivals</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-2" href="#!"> Map</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-2" href="#!">Featured</a>
-            </li>
-    
-            <li class="nav-item">
-              <a class="nav-link mx-2" href="#!">About Us</a>
-            </li>
-            <li class="nav-item ms-3">
-              <a class="btn btn-black btn-rounded" href="#!"> <i class="bi bi-box-arrow-in-right"> </i> Sign in</a> 
-            </li>
-          </ul>
-        </div>
+        <a class="navbar-brand" href="#!">FestivALL</a>
+        <a class="btn btn-primary" href="#signup">Sign Up</a>
       </div>
     </nav> -->
-       <!-- Navbar -->
+
+    <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
   <div class="container">
     <a class="navbar-brand" href="#"
@@ -105,17 +76,20 @@
   </div>
 </nav>
 <!-- Navbar -->
-        
     <!-- Masthead-->
     <header class="masthead">
       <div class="container position-relative">
         <div class="row justify-content-center">
+
+
           <div class="col-xl-6">
+            
             <div class="text-center text-white">
               <!-- Page heading-->
-              <h1 class="mb-5">
+
+              <!-- <h1 class="mb-5">
                 Generate more leads with a professional landing page!
-              </h1>
+              </h1> -->
               <!-- Signup form-->
               <!-- * * * * * * * * * * * * * * *-->
               <!-- * * SB Forms Contact Form * *-->
@@ -131,7 +105,7 @@
               >
                 <!-- Email address input-->
                 <div class="row">
-                  <div class="col">
+                  <!-- <div class="col">
                     <input
                       class="form-control form-control-lg"
                       id="name"
@@ -159,27 +133,9 @@
                     >
                       Search
                     </button>
-                  </div>
+                  </div> -->
                 </div>
-                <!-- Submit success message-->
-                <!---->
-                <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->
-                <div class="d-none" id="submitSuccessMessage">
-                  <div class="text-center mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                    <p>To activate this form, sign up at</p>
-                    <a
-                      class="text-white"
-                      href="https://startbootstrap.com/solution/contact-forms"
-                      >https://startbootstrap.com/solution/contact-forms</a
-                    >
-                  </div>
-                </div>
-                <!-- Submit error message-->
-                <!---->
-                <!-- This is what your users will see when there is-->
-                <!-- an error submitting the form-->
+            
                 <div class="d-none" id="submitErrorMessage">
                   <div class="text-center text-danger mb-3">
                     Error sending message!
@@ -191,12 +147,13 @@
         </div>
       </div>
     </header>
+<!-- hello -->
     <!-- Icons Grid-->
     <section class="features-icons bg-light text-center">
       <div class="container-fluid">
         <div class="row g-0">
           <div class="col-lg-8 text-start">
-            <h3 class="mb-4">Festival This month</h3>
+            <!-- <h3 class="mb-4 px-4">Know About Festival</h3> -->
             <!-- Event cards container here -->
             <div class="container w-100">
               <!-- event cards -->
@@ -204,89 +161,108 @@
               <div class="card flex flex-row">
                 <!-- Imgae on the left -->
                 <div class="img-container w-1">
-                  <img
-                    src="../assets/holi.jpg"
+                  <!-- <img
+                    src="./assets/holi.jpg"
                     class="card-img-top w-15 object-fit"
-                    alt="Holi image"
+                    alt="..."
                     style="width: 200px"
-                  />
+                  /> -->
                 </div>
                 <!-- text container -->
                 <div class="card-body text-start">
-                  <form id="myForm"
-                  >
-                    <h2 class="card-title">Holi Festival</h2>
-                    <div class="row">
-                      <div class="col-4">
-                        <p><i class="bi bi-calendar"></i> March 23, 2024</p>
-                      </div>
-                      <div class="col-6">
-                        <p><i class="bi bi-calendar"></i> March 23, 2024</p>
-                      </div>
-                    </div>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      value="Holi"
-                      hidden
-                    />
-                    <input
-                      type="date"
-                      name="start_date"
-                      id="start_date"
-                      value="2024-03-24"
-                      hidden
-                    />
-                    <input
-                      type="date"
-                      name="end_date"
-                      id="end_date"
-                      value="2024-03-24"
-                      hidden
-                    />
-                    <input
-                      type="number"
-                      name="location"
-                      id="location"
-                      value="1"
-                      hidden
-                    />
-
-                    <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                    <!-- button below -->
-                    <div class="d-flex">
-                      <a href="#"
-                      ><button
-                        type="submit"
-                        class="btn btn-primary"
-                        onclick="getButtonValue(event)"
-                      >
-                        Add to calender
-                      </button>
-                      
-                      </a
-                    >
-                      <a href="EventDetail.html" class="btn text-primary">View Details</a>
-                    </div>
-                    
-                    
-                  </form>
-                 
                   <!-- Heading and description-->
+                  <h2 class="card-title">Holi Festival</h2>
+                  <p><i class="bi bi-calendar"></i> March 23, 2024</p>
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+                  <!-- button below -->
+                  
+                  <h5 class="mt-3" >Activities</h5>
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+
+                  <h5 class="mt-3" >Organized By</h5>
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+
+                  <h5 class="mt-3" >Way to Festival:</h5>
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    Some quick example text to build on the card title and make up the bulk of the card's content. 
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                  </p>
+                 
+
                 </div>
+
+                
               </div>
+             
+              
             </div>
+            
           </div>
 
           <div class="col-lg-4 px-4">
-            <h3 class="text-start mb-4">Calender</h3>
-            <div id="calendar"></div>
+            <h3 class="text-start mb-4">Festival Details</h3>
+
+            <h4 class="text-start mb-4"><i class="bi bi-geo-alt"></i> Venue</h4>
+            <p class="text-start mb-4">Gabahal</p>
+
+            <h4 class="text-start mb-4"><i class="bi bi-calendar"></i>  Date and Time</h4>
+            <p class="text-start mb-4">24th March - 26th March</p>
+
+            <h4 class="text-start mb-4">Speciality</h4>
+            <h2 class="text-start mb-4"><i class="bi bi-shop-window">  </i></h2>
+            <div class="d-grid gap-2">
+            <a href="#" class="btn btn-primary">
+                <button class="btn btn-sm text-white">Add to calender</button></a>
+                </div
+           
           </div>
         </div>
+        <h2 class="mt-3">Other Festivals</h2>
+        <div class="px-1 row d-flex">
+
+            <div class="card mt-4 mx-auto col-3">
+              <img class="card-img-top" src="../assets/machhindranath.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <div class="card mt-4 mx-auto col-3">
+              <img class="card-img-top" src="../assets/Sonam.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <div class="card mt-4 mx-auto col-3">
+              <img class="card-img-top" src="../assets/udhauli.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            
+
+          </div>
       </div>
     </section>
 
@@ -329,53 +305,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
     <!-- Core theme JS-->
-    <script src="../js/scripts.js"></script>
-    <script src="../js/calenderScripts.js"></script>
+    <script src="scripts.js"></script>
+    <script src="calenderScripts.js"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
-
-      <script>
-      document.getElementById('myForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-          
-          // Convert form data to JSON
-          const formData = new FormData(event.target);
-          const jsonObject = {};
-          formData.forEach((value, key) => {
-              jsonObject[key] = value;
-          });
-          const jsonData = JSON.stringify(jsonObject);
-          console.log(jsonData);
-
-          // POST JSON data to a certain URL
-          const url = 'http://192.168.175.22:8000/festival/festivities/';
-          fetch(url, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: jsonData
-          })
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          })
-          .then(data => {
-              console.log('Response:', data);
-              // Do something with the response
-          })
-          .catch(error => {
-              console.error('Error:', error);
-              // Handle errors
-          });
-      });
-  </script>
- 
   </body>
 </html>
