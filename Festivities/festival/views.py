@@ -9,10 +9,10 @@ from datetime import date
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
 from rest_framework.authtoken.views import obtain_auth_token
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 
 
 # Create your views here.
@@ -73,6 +73,7 @@ class FestivitiesView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroy
 class CommentView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
@@ -165,11 +166,21 @@ class UserView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView
         return self.destroy(request, *args, **kwargs)
     
 class UserLoginAPIView(APIView):
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
 
     def post(self, request):
-        token = obtain_auth_token(request)
-        return Response({'token': token.key})
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        # Authenticate user
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            # Login user
+            login(request, user)
+            return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
 
 class UserLogoutAPIView(APIView):
     def post(self, request):
@@ -177,6 +188,7 @@ class UserLogoutAPIView(APIView):
         return Response({'message': 'Logout successful'}, status=200)
     
 class CalenderView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+    # permission_classes = [IsAuthenticated]
     queryset = Calender.objects.all()
     serializer_class = CalenderSerializer
     
